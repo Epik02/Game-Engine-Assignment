@@ -30,6 +30,12 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public Transform projectilePos;
 
+    GameObject clone;
+    public PlayerController player;
+    public float playerx = 0;
+    public float playery = 0;
+    public float playerz = 0;
+
     private void OnEnable()
     {
         inputAction.Player.Enable();
@@ -65,11 +71,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //public void Shoot()
+    //{
+    //    Rigidbody bulletRb = Instantiate(bullet, projectilePos.position, Quaternion.identity).GetComponent<Rigidbody>();
+    //    bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+    //    bulletRb.AddForce(transform.up * 5f, ForceMode.Impulse);
+    //    Destroy(bulletRb, 1.0f);
+    //}
     public void Shoot()
     {
-        Rigidbody bulletRb = Instantiate(bullet, projectilePos.position, Quaternion.identity).GetComponent<Rigidbody>();
-        bulletRb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-        bulletRb.AddForce(transform.up * 5f, ForceMode.Impulse);
+        clone = Instantiate(bullet, projectilePos.position, Quaternion.identity);
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * 32f, ForceMode.Impulse);
+        clone.GetComponent<Rigidbody>().AddForce(transform.up * 5f, ForceMode.Impulse);
+        Destroy(clone, 0.3f);
     }
 
     // Update is called once per frame
@@ -79,5 +93,9 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.right * move.x * Time.deltaTime * walkSpeed, Space.Self);
 
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, distanceToGround);
+
+        playerx = transform.position.x;
+        playery = transform.position.y;
+        playerz = transform.position.z;
     }
 }

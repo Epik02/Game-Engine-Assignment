@@ -5,16 +5,15 @@ using UnityEngine;
 public class AnimStartTime : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-    }
+    public GameObject zombieObject;
 
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<Animation>()["NOT READ ONLY"].time < 2.5f)
+        if (zombieObject.GetComponent<Animation>()["NOT READ ONLY"].time < 2.5f)
         {
-            GetComponent<Animation>()["NOT READ ONLY"].time = 2.5f;
+            zombieObject.GetComponent<Animation>()["NOT READ ONLY"].time = 2.5f;
+           // GetComponent<Animation>()["NOT READ ONLY"].time = 2.5f;
         }
     }
 }
