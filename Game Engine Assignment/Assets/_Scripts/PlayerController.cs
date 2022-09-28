@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class PlayerController : MonoBehaviour
     public float playery = 0;
     public float playerz = 0;
 
+    public Animator pAnimator;
+    public Rigidbody mplayer;
+
     private void OnEnable()
     {
         inputAction.Player.Enable();
@@ -60,6 +64,18 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         distanceToGround = GetComponent<Collider>().bounds.extents.y;
 
+    }
+
+    void IsMoving()
+    {
+        if (mplayer.velocity.magnitude != 0)
+        {
+            pAnimator.SetBool("walk", true);
+        }
+        else
+        {
+            pAnimator.SetBool("walk", false);
+        }
     }
 
     private void Jump()
@@ -97,5 +113,11 @@ public class PlayerController : MonoBehaviour
         playerx = transform.position.x;
         playery = transform.position.y;
         playerz = transform.position.z;
+
+        if (playery <= -10 || playerx >= 286)
+        {
+            SceneManager.LoadScene("Level1");
+        }
+        IsMoving();
     }
 }

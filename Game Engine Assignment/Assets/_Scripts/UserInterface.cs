@@ -6,13 +6,14 @@ using TMPro;
 
 public class UserInterface : MonoBehaviour
 {
-    public ScoreManager test;
-    public TMP_Text starText;
-
+    public ScoreManager sc;
+    public Text plzwork;
+    string scoreString;
 
     // Update is called once per frame
     void Update()
     {
-      //  GetComponent<TextMeshProUGUI>().
+        scoreString = sc.score.ToString();
+        plzwork.text = "Coins Collected: " + scoreString;
     }
 }

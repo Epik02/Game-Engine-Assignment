@@ -5,15 +5,16 @@ using UnityEngine.InputSystem;
 
 public class EditManage : MonoBehaviour
 {
-    PlayerAction inputAction;
+    //PlayerAction inputAction;
 
     public Camera mainCam;
     public Camera editorCam;
 
-   // public GameObject prefab1;
-   // public GameObject prefab2;
+    // public GameObject prefab1;
+    // public GameObject prefab2;
 
-   // GameObject item;
+    // GameObject item;
+    PlayerController tempController;
 
     public bool editorMode = false;
     //bool instantiated = false;
@@ -21,13 +22,9 @@ public class EditManage : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        inputAction = PlayerController.instance.inputAction;
+        //inputAction = PlayerController.instance.inputAction;
 
-        inputAction.Editor.EnableEdit.performed += cntxt => SwitchCamera();
-
-       // inputAction.Editor.AddItem1.performed += cntxt => AddItem(1);
-       // inputAction.Editor.AddItem1.performed += cntxt => AddItem(2);
-       // inputAction.Editor.AddItem2.performed += cntxt => DropItem();
+        //inputAction.Editor.EnableEdit.performed += cntxt => SwitchCamera();
 
         mainCam.enabled = true;
         editorCam.enabled = false;
@@ -39,31 +36,6 @@ public class EditManage : MonoBehaviour
         mainCam.enabled = !mainCam.enabled;
         editorCam.enabled = !editorCam.enabled;
     }
-
-    //private void AddItem(int itemId)
-    //{
-    //    if (editorMode && !instantiated)
-    //    {
-    //        switch (itemId)
-    //        {
-    //            case 1:
-    //                item = Instantiate(prefab1);
-    //                break;
-    //            case 2:
-    //                item = Instantiate(prefab2);
-    //                break;
-    //            default:
-    //                break;
-    //        }
-
-    //        instantiated = true;
-    //    }
-    //}
-
-    //private void DropItem()
-    //{
-
-    //}
 
     // Update is called once per frame
     void Update()
